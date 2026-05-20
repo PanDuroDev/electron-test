@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>تجربة Auto-Update</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: #1e1e1e;
+        color: white;
+      }
+      #status {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #333;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚀 تطبيق الاختبار</h1>
+    <p>الإصدار: <strong>1.0.0</strong></p>
+    <div id="status">جاري فحص التحديثات...</div>
+
+    <script>
+      const { ipcRenderer } = require("electron");
+
+      ipcRenderer.on("update-status", (event, msg) => {
+        document.getElementById("status").innerText = msg;
+      });
+    </script>
+  </body>
+</html>
